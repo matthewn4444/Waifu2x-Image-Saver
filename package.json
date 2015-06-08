@@ -1,0 +1,12 @@
+{
+  "name": "waifu2x-image-saver",
+  "title": "Waifu2x Image Saver",
+  "id": "jid1-e3JihcvhFIlnOw",
+  "description": "Upres your images with a right click away using Waifu2x",
+  "author": "",
+  "icon": "data/images/icon-64.png",
+  "license": "MPL 2.0",
+  "version": "0.1",
+  "permissions": {"private-browsing": true},
+  "unpack": true
+}

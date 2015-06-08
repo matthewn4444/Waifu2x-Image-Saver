@@ -1,0 +1,6 @@
+# ignore folders
+/C
+
+# ignore files
+run-normal.sh
+waifu2x-image-saver.xpi
