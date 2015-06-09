@@ -8,5 +8,11 @@
   "license": "MPL 2.0",
   "version": "0.1",
   "permissions": {"private-browsing": true},
-  "unpack": true
+  "unpack": true,
+  "preferences": [{
+    "name": "not-cross-domain-list",
+    "type": "string",
+    "title": "Non-cross domain image list",
+    "hidden": true
+  }]
 }
