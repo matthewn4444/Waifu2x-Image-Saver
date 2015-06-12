@@ -4,3 +4,8 @@
 # ignore files
 run-normal.sh
 waifu2x-image-saver.xpi
+
+# Visual Studio files
+*.exp
+*.lib
+*.pdb
