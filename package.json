@@ -14,5 +14,19 @@
     "type": "string",
     "title": "Non-cross domain image list",
     "hidden": true
+  },
+  {
+    "name": "prevent-recursion",
+    "type": "bool",
+    "title": "Do not Upscale Continuously",
+    "description": "Disallow images to continuously upscale until image exceeds server size limits; only upscale images once making images save faster.",
+    "value": false
+  },
+  {
+    "name": "allow-small-images-continuously-upscale",
+    "type": "bool",
+    "title": "Allow Small Images to Continuously Upscale",
+    "description": "Normally small images [640x640 area] scales once because they look ugly when upscaling more than once, enabling this allows you to scale small images multiple times.",
+    "value": false
   }]
 }
