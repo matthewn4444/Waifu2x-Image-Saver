@@ -28,5 +28,11 @@
     "title": "Allow Small Images to Continuously Upscale",
     "description": "Normally small images [640x640 area] scales once because they look ugly when upscaling more than once, enabling this allows you to scale small images multiple times.",
     "value": false
+  },
+  {
+    "name": "disable-notifications",
+    "type": "bool",
+    "title": "Disable Notifications",
+    "value": false
   }]
 }
