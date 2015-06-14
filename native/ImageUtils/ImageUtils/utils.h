@@ -9,7 +9,11 @@
 
 #include "resampler.h"
 
-#define DllExport extern "C" __declspec(dllexport)
+#ifdef _WIN32
+#  define DllExport extern "C" __declspec(dllexport)
+#else
+#  define DllExport extern "C"
+#endif
 
 typedef unsigned char byte;
 

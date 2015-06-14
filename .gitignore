@@ -9,3 +9,6 @@ waifu2x-image-saver.xpi
 *.exp
 *.lib
 *.pdb
+
+# GCC objects
+*.o
