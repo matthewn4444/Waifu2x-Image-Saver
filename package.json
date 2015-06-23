@@ -11,6 +11,18 @@
   "permissions": {"private-browsing": true},
   "unpack": true,
   "preferences": [{
+    "name": "noise-reduction-level",
+    "type": "menulist",
+    "title": "Noise Reduction (expect JPEG Artifact)",
+    "description": "The image will lose more detail as you apply more noise. If the image is highly detailed, do not use noise reduction.",
+    "value": 1,
+    "options": [
+        { "value": "0", "label": "None" },
+        { "value": "1", "label": "Low" },
+        { "value": "2", "label": "High" }
+    ]
+  },
+  {
     "name": "not-cross-domain-list",
     "type": "string",
     "title": "Non-cross domain image list",
