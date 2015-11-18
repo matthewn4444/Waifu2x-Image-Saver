@@ -39,7 +39,7 @@ Addons page.
   * Open */native/ImageUtils/ImageUtils.sln* for Visual Studio 2013
   * Set to *release* and build the project
 4. Compile the binary for Linux
-  * Go to */native/ImageUtils/ImageUtils* and run `make`
+  * Go to */native/ImageUtils/ImageUtils* and run `build.sh`
 5. Back at root run the `compile.sh` file or `cfx xpi`
 
 ## Thanks

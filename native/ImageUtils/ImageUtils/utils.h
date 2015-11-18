@@ -43,8 +43,8 @@ static bool resize(byte* src, int srcW, int srcH, byte* dst, int dstW, int dstH,
     }
 
     // Run routine
-    Resampler* resamplers[3];
-    std::vector<float> samples[3];
+    Resampler* resamplers[4];
+    std::vector<float> samples[4];
 
     // Now create a Resampler instance for each component to process. The first instance will create new contributor tables, which are shared by the resamplers
     // used for the other components (a memory and slight cache efficiency optimization).

@@ -7,7 +7,7 @@
   "homepage": "https://github.com/matthewn4444/Waifu2x-Image-Saver",
   "icon": "data/images/icon-64.png",
   "license": "MPL 2.0",
-  "version": "0.4",
+  "version": "0.4.2",
   "permissions": {"private-browsing": true},
   "unpack": true,
   "preferences": [{
