@@ -1,2 +1,2 @@
 #!/bin/bash
-cfx run
+jpm run

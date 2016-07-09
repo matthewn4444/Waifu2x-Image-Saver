@@ -9,4 +9,4 @@ rm data/native/x64/*.iobj
 rm data/native/x64/*.ipdb
 rm data/native/x64/*.lib
 rm data/native/x64/*.pdb
-cfx xpi
+jpm xpi
