@@ -1,0 +1,7 @@
+.git/
+*backup*
+old/
+*.xpi.old
+*.xpi
+*.sh
+.jpmignore
