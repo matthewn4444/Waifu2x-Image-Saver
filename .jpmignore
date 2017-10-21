@@ -1,0 +1,10 @@
+.git/
+*backup*
+old/
+*.xpi.old
+*.xpi
+*.sh
+.jpmignore
+design/
+*.sublime*
+README.md
