@@ -5,6 +5,7 @@ old/
 *.xpi
 *.sh
 .jpmignore
+.gitignore
 design/
 *.sublime*
 README.md
