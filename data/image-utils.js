@@ -76,7 +76,7 @@ function rGetDataURLToFitSize(inputCanvas, tempCanvas, highFraction, lowFraction
     let fraction = (highFraction - lowFraction) / 2 + lowFraction;
     let newWidth = Math.floor(inputCanvas.width * fraction);
     let newHeight = Math.floor(inputCanvas.height * fraction);
-    console.log("rGetDataURLToFitSize", highFraction, lowFraction, fraction, newWidth, newHeight);
+    console.log("       rGetDataURLToFitSize", highFraction, lowFraction, fraction, newWidth, newHeight);
 
     tempCanvas.width = newWidth;
     tempCanvas.height = newHeight;
@@ -87,7 +87,7 @@ function rGetDataURLToFitSize(inputCanvas, tempCanvas, highFraction, lowFraction
             let size = getImageSizeFromDataUrl(dataurl);
             if (size < sizeLimit) {
                 if (highFraction - fraction < 0.01) {
-                    console.log("   Finished", highFraction, fraction);
+                    console.log("       Finished", highFraction, fraction);
                     return callback(size < sizeLimit ? dataurl : null, tempCanvas.width, tempCanvas.height);
                 }
                 rGetDataURLToFitSize(inputCanvas, tempCanvas, highFraction, fraction, sizeLimit, callback);
@@ -105,8 +105,8 @@ function rGetDataURLToFitSize(inputCanvas, tempCanvas, highFraction, lowFraction
 
 function getDataURLFromCanvas(canvas, sizeLimit, isTransparent, forceJpeg, jpegQuality, callback) {
     // Determine the quality for the limited size for uploading
-    if (!forceJpeg || isTransparent) {
-        console.log("Try getting the dataURL as PNG");
+    if (isTransparent || (!forceJpeg && (jpegQuality >= 1 || jpegQuality <= 0))) {
+        console.log("       Try getting the dataURL as PNG");
         try {
             let pngDataURL = canvas.toDataURL();
             // Check to see if the png is within the size of the sizeLimit
@@ -128,14 +128,21 @@ function getDataURLFromCanvas(canvas, sizeLimit, isTransparent, forceJpeg, jpegQ
         }
     }
 
-    console.log("Try getting the dataURL as JPEG");
+    console.log("       Try getting the dataURL as JPEG");
     try {
+        // If jpeg quality is queried then use and send it back, otherwise find something undersize
+        if (jpegQuality < 1 && jpegQuality > 0) {
+            let dataURL = canvas.toDataURL('image/jpeg', jpegQuality);
+            console.log("       Used jpg with quality of " + (jpegQuality * 100) + "%");
+            return callback(null, dataURL, canvas.width, canvas.height);
+        }
+
         // Loop down step 0.1 for image quality till the size is smaller than the limit
         for (let q = jpegQuality; q >= 0.1; q -= 0.1) {
             let dataURL = canvas.toDataURL('image/jpeg', q);
             if (sizeLimit <= 0 || getImageSizeFromDataUrl(dataURL) < sizeLimit) {
                 // Good size with certain quality of jpeg
-                console.log("   Used jpg with quality of " + (q * 100) + "%");
+                console.log("       Used jpg with quality of " + (q * 100) + "%");
                 return callback(null, dataURL, canvas.width, canvas.height);
             }
         }
@@ -221,7 +228,7 @@ self.port.on("transparency", function(data) {
                 self.port.emit("transparency", { data: false });
             }
         } catch (e) {
-            console.log("Error in finding transparency", e);
+            console.log("       Error in finding transparency", e);
             self.port.emit("transparency", { error: e });
         }
     });
@@ -258,19 +265,19 @@ self.port.on("resize", function(opt) {
                 return self.port.emit("resize", { error: e });
             }
             if (width && height) {
-                console.log("Resize the image to [" + width + "x" + height + "]");
+                console.log("       Resize the image to [" + width + "x" + height + "]");
                 canvas.width = width;
                 canvas.height = height;
                 pica.resizeCanvas(image, canvas, {quality: 3, alpha: isTransparent}, function(e) {
                     emitResult("resize", e, canvas, sizeLimit, isTransparent, forceJpeg, jpegQuality);
                 });
             } else {
-                console.log("Compress the image");
+                console.log("       Compress the image");
                 canvas.width = image.width;
                 canvas.height = image.height;
 
                 // Send error that the compression cannot be done exceeding the max side
-                if (maxSide != 0 && Math.max(image.width, image.height) > maxSide) {
+                if ((jpegQuality >= 1 || jpegQuality <= 0) && maxSide != 0 && Math.max(image.width, image.height) > maxSide) {
                     console.log("   Return early instead of compress now because too large");
                     return self.port.emit("resize", { data: null, transparency: isTransparent,
                             width: image.width, height: image.height });
@@ -280,7 +287,7 @@ self.port.on("resize", function(opt) {
                 emitResult("resize", e, canvas, sizeLimit, isTransparent, forceJpeg, jpegQuality);
             }
         } catch (e) {
-            console.log("Error in resizing", e);
+            console.log("       Error in resizing", e);
             return self.port.emit("resize", { error: e });
         }
     });
@@ -299,7 +306,7 @@ self.port.on("getImage", function(opt) {     // TODO get options for resize late
     var src = opt.src;
     var sizeLimit = opt.sizeLimit || 0;
 
-    console.log("Get the image from tab", src);
+    console.log("       Get the image from tab", src);
     var canvas = document.createElement('canvas');
     loadImage(src, function(e, image) {
         if (e) {
@@ -314,7 +321,7 @@ self.port.on("getImage", function(opt) {     // TODO get options for resize late
             if (src.endsWith(".png")) {
                 isTransparent = isCanvasTransparent(canvas);
             }
-            console.log("   Got image, is it transparent?", isTransparent);
+            console.log("       Got image, is it transparent?", isTransparent);
             emitResult("getImage", e, canvas, sizeLimit, isTransparent, false, 0);
         } else {
            return self.port.emit("getImage", { error: "no image" });

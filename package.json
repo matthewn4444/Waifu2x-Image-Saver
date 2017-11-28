@@ -12,34 +12,44 @@
   "preferences": [{
     "name": "noise-reduction-level",
     "type": "menulist",
-    "title": "Noise Reduction (expect JPEG Artifact)",
-    "description": "The image will lose more detail as you apply more noise. If the image is highly detailed, do not use noise reduction.",
+    "title": "Waifu2x Noise Reduction (option on the website)",
+    "description": "Reduces noise if image has any, otherwise could add some.",
     "value": 1,
     "options": [
         { "value": "0", "label": "None" },
-        { "value": "1", "label": "Low" },
+        { "value": "1", "label": "Medium" },
         { "value": "2", "label": "High" }
     ]
   },
   {
-    "name": "not-cross-domain-list",
-    "type": "string",
-    "title": "Non-cross domain image list",
-    "hidden": true
+    "name": "compress-on-save",
+    "type": "menulist",
+    "title": "Compress Image",
+    "value": 0,
+    "options": [
+        { "value": "0", "label": "Off" },
+        { "value": "70", "label": "70%" },
+        { "value": "75", "label": "75%" },
+        { "value": "80", "label": "80%" },
+        { "value": "85", "label": "85%" },
+        { "value": "90", "label": "90%" },
+        { "value": "95", "label": "95%" }
+    ],
+    "description": "Saves the image on final upscale as JPEG to reduce the image size, can impact quality depending on percentage chosen. Will not work if image is transparent."
   },
   {
-    "name": "prevent-recursion",
+    "name": "upscale-once",
     "type": "bool",
-    "title": "Do not Upscale Continuously",
-    "description": "Disallow images to continuously upscale until image exceeds server size limits; only upscale images once making images save faster.",
+    "title": "Upscale Once",
+    "description": "All images will only upscale once.",
     "value": false
   },
   {
-    "name": "allow-small-images-continuously-upscale",
-    "type": "bool",
-    "title": "Allow Small Images to Continuously Upscale",
-    "description": "Normally small images [640x640 area] scales once because they look ugly when upscaling more than once, enabling this allows you to scale small images multiple times.",
-    "value": false
+    "name": "max-area-upscale-once",
+    "type": "integer",
+    "title": "Upscale Area",
+    "value": 921600,
+    "description": "Only upscale an image once if its area is lower than specified, otherwise it will recursively upscale till reaches max size. 0 and larger than max size (2560x2560) will be ignored. (921600 is like 1280 x 720)"
   },
   {
     "name": "disable-notifications",
