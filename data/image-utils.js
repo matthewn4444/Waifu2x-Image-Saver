@@ -111,6 +111,7 @@ function getDataURLFromCanvas(canvas, sizeLimit, isTransparent, forceJpeg, jpegQ
             let pngDataURL = canvas.toDataURL();
             // Check to see if the png is within the size of the sizeLimit
             if (sizeLimit <= 0 || getImageSizeFromDataUrl(pngDataURL) < sizeLimit) {
+                console.log("       Return save as png");
                 return callback(null, pngDataURL, canvas.width, canvas.height);
             }
 
