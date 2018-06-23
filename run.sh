@@ -1,2 +1,2 @@
 #!/bin/bash
-jpm run
+web-ext run

@@ -1,0 +1,40 @@
+{
+  "manifest_version": 2,
+  "applications": {
+    "gecko": {
+      "id": "waifu2x_image_saver@matthewn4444.com",
+      "strict_min_version": "45.0"
+    }
+  },
+  "name": "Waifu2x Image Saver",
+  "description": "Upres your images with a right click away using Waifu2x",
+  "author": "matthewn4444@gmail.com",
+  "homepage_url": "https://github.com/matthewn4444/Waifu2x-Image-Saver",
+  "version": "1.0.0",
+  "permissions": [
+    "webRequest",
+    "contextMenus",
+    "tabs",
+    "notifications",
+    "activeTab",
+    "downloads",
+    "<all_urls>"
+  ],
+   "icons": {
+    "64": "icons/icon.png",
+    "96": "icons/icon96.png"
+  },
+  "content_security_policy": "script-src 'self' blob:; object-src 'self' blob:;",
+  "background": {
+    "scripts": [
+      "lib/pica.min.js",
+      "lib/utils.js",
+      "lib/notifications.js",
+      "lib/image-binary.js",
+      "lib/image-utils.js",
+      "lib/image-process.js",
+      "lib/waifu2x-booru.js",
+      "lib/main.js"
+    ]
+  }
+}
