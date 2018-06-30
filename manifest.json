@@ -18,6 +18,8 @@
     "notifications",
     "activeTab",
     "downloads",
+    "unlimitedStorage",
+    "storage",
     "<all_urls>"
   ],
    "icons": {
